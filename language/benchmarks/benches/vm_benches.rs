@@ -9,24 +9,18 @@ use language_benchmarks::{measurement::cpu_time_measurement, move_vm::bench};
 // MoveVM benchmarks
 //
 
-fn arith<M: Measurement + 'static>(c: &mut Criterion<M>) {
-    bench(c, "arith");
+fn basic_coin_transfer<M: Measurement + 'static>(c: &mut Criterion<M>) {
+    bench(c, "basic_coin_transfer");
 }
 
-fn call<M: Measurement + 'static>(c: &mut Criterion<M>) {
-    bench(c, "call");
-}
-
-fn natives<M: Measurement + 'static>(c: &mut Criterion<M>) {
-    bench(c, "natives");
+fn swap<M: Measurement + 'static>(c: &mut Criterion<M>) {
+    bench(c, "swap");
 }
 
 criterion_group!(
     name = vm_benches;
     config = cpu_time_measurement();
-    targets = arith,
-    call,
-    natives
+    targets = basic_coin_transfer, swap,
 );
 
 criterion_main!(vm_benches);
